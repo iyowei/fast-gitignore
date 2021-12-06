@@ -1,0 +1,43 @@
+{
+  "name": "@iyowei/fast-gitignore",
+  "description": "从自定义模板库中获取 .gitignore 模板。",
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "scripts": {
+    "dev": "node ./test/index.js",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "dependencies": {
+    "arrify": "^3.0.0",
+    "deepmerge": "^4.2.2",
+    "fast-glob": "^3.2.7",
+    "p-map": "^5.3.0"
+  },
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "git",
+    "gitignore",
+    "init",
+    "generator",
+    "iyowei"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iyowei/fast-gitignore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iyowei/fast-gitignore/issues"
+  },
+  "homepage": "https://github.com/iyowei/fast-gitignore#readme",
+  "license": "MIT"
+}
