@@ -1,6 +1,6 @@
 # await fastGitignore({ignore, templatesDir});
 
-从自定义模板库中获取 .gitignore 模板。
+从 [自定义模板库](https://github.com/github/gitignore) 中获取 .gitignore 模板。
 
 ## 安装
 
