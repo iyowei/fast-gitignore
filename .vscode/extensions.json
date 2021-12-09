@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "amodio.toggle-excluded-files",
+    "redhat.vscode-yaml"
+  ]
+}
