@@ -21,7 +21,7 @@
 
 ```javascript
 import path from "path";
-import fastGitignore from 'fast-gitignore';
+import fastGitignore from '@iyowei/fast-gitignore';
 
 (async () => {
   const rslt = await fastGitignore({
