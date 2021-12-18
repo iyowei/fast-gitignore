@@ -11,8 +11,7 @@
     "node": ">=12.20.0"
   },
   "scripts": {
-    "dev": "node ./test/index.js",
-    "preinstall": "npx only-allow pnpm"
+    "dev": "node ./test/index.js"
   },
   "dependencies": {
     "arrify": "^3.0.0",
