@@ -13,7 +13,7 @@ import arrify from "arrify";
  * @param {Array} templatesDir - 模板库磁盘位置
  */
 export async function fastGitignore({ topic = [], templatesDir = "." }) {
-  const GLOB = `{${arrify(topic).join(",")}}`;
+  const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = await fg([join(templatesDir, `${GLOB}.gitignore`)]);
 
@@ -50,7 +50,7 @@ export async function fastGitignore({ topic = [], templatesDir = "." }) {
  * @param {Array} templatesDir - 模板库磁盘位置
  */
 export function fastGitignoreSync({ topic = [], templatesDir = "." }) {
-  const GLOB = `{${arrify(topic).join(",")}}`;
+  const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = fg.sync([join(templatesDir, `${GLOB}.gitignore`)]);
 
