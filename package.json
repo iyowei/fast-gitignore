@@ -11,11 +11,10 @@
     "node": ">=12.20.0"
   },
   "scripts": {
-    "dev": "node ./test/index.js"
+    "test": "npx mocha '**/*.+(spec|test).js'"
   },
   "dependencies": {
     "arrify": "^3.0.0",
-    "deepmerge": "^4.2.2",
     "fast-glob": "^3.2.7",
     "p-map": "^5.3.0"
   },
@@ -38,5 +37,8 @@
     "url": "https://github.com/iyowei/fast-gitignore/issues"
   },
   "homepage": "https://github.com/iyowei/fast-gitignore#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.1.3"
+  }
 }

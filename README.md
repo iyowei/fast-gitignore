@@ -1,9 +1,4 @@
-<!-- 链接 -->
-[纯函数]: https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0
-[github/gitignore]: https://github.com/github/gitignore
-[latest-gitignore]: https://github.com/iyowei/latest-gitignore
-
-# await fastGitignore({ignore, templatesDir});
+# @iyowei/fast-gitignore
 
 > 从 [自定义模板库][github/gitignore] 中获取 .gitignore 模板。
 
@@ -13,34 +8,64 @@
 
 ## 使用
 
-- `ignore` {Array} .gitignore 主题集合，**默认：** `[]`；
+### `fastGitignoreSync({topic, templatesDir});`
+
+- `topic` {Array} .gitignore 主题集合，**默认：** `[]`；
 - `templatesDir` {String} 模板库磁盘位置，**默认：** `.`；
 - 返回: {Object} 键是模板文件路径，值是模板内容。
 
-`await fastGitignore({ignore, templatesDir});` 是 [纯函数][纯函数]，并不会帮忙创建 ".gitignore" 文件。
+```javascript
+import { log } from "console";
+import path from "path";
+
+import { fastGitignoreSync } from "@iyowei/fast-gitignore";
+
+const rslt = fastGitignoreSync({
+  topic: ["Windows", "SVN"],
+  templatesDir: path.join(process.cwd(), "templates"),
+});
+
+log(rslt);
+/**
+   * {
+   *   '~/Development/iyowei/fast-gitignore/templates/SVN.gitignore': '.svn/\n'
+   *   '~/Development/iyowei/fast-gitignore/templates/Windows.gitignore': '# Windows thumbnail cache files\n' + 'Thumbs.db\n' + 'Thumbs.db:encryptable\n' + 'ehthumbs.db\n' + 'ehthumbs_vista.db\n' + '\n' + '# Dump file\n' + '*.stackdump\n' + '\n' + '# Folder config file\n' + '[Dd]esktop.ini\n' + '\n' + '# Recycle Bin used on file shares\n' + '$RECYCLE.BIN \n' + '\n' + '# Windows Installer files\n' + '*.cab\n' + '*.msi\n' + '*.msix\n' + '*.msm\n' + '*.msp\n' + '\n' + '# Windows shortcuts\n' + '*.lnk\n',
+   *   ...
+  }*/
+```
+
+### `await fastGitignore({topic, templatesDir});`
+
+- `topic` {Array} .gitignore 主题集合，**默认：** `[]`；
+- `templatesDir` {String} 模板库磁盘位置，**默认：** `.`；
+- 返回: {`Promise<object>`} 键是模板文件路径，值是模板内容。
 
 ```javascript
+import { log } from "console";
 import path from "path";
-import fastGitignore from '@iyowei/fast-gitignore';
+
+import { fastGitignore } from "@iyowei/fast-gitignore";
 
 (async () => {
   const rslt = await fastGitignore({
-    ignore: ['Windows', 'SVN'],
+    topic: ["Windows", "SVN"],
     templatesDir: path.join(process.cwd(), "templates"),
   });
 
-  console.log(rslt);
+  log(rslt);
   /**
    * {
    *   '~/Development/iyowei/fast-gitignore/templates/SVN.gitignore': '.svn/\n'
    *   '~/Development/iyowei/fast-gitignore/templates/Windows.gitignore': '# Windows thumbnail cache files\n' + 'Thumbs.db\n' + 'Thumbs.db:encryptable\n' + 'ehthumbs.db\n' + 'ehthumbs_vista.db\n' + '\n' + '# Dump file\n' + '*.stackdump\n' + '\n' + '# Folder config file\n' + '[Dd]esktop.ini\n' + '\n' + '# Recycle Bin used on file shares\n' + '$RECYCLE.BIN \n' + '\n' + '# Windows Installer files\n' + '*.cab\n' + '*.msi\n' + '*.msix\n' + '*.msm\n' + '*.msp\n' + '\n' + '# Windows shortcuts\n' + '*.lnk\n',
    *   ...
   }*/
-
 })();
 ```
 
+> @iyowei/fast-gitignore 并不会创建 ".gitignore" 文件，相关需求参见 [相关](#相关)。
 ## 安装
+
+[![Node Version Badge][node version badge]][download node.js] ![esm][esm]
 
 ```shell
 # 使用 Pnpm
@@ -54,12 +79,37 @@ $ yarn add @iyowei/fast-gitignore
 ```
 
 ## 相关
+
 - [`latest-gitignore`][latest-gitignore] - 从 `github/gitignore` 项目中获取最新模板。
 
-## 其它
+## 指导
 
 从主观心理的角度来看，存在是因为能够注意到，而能够注意到，前提是时间够慢、够长，或是代价够大、够有影响力，出现频率够高、够新鲜…… 想象下，电风扇转起来，肉眼是注意不到扇叶的，可以透过风扇看到其后的东西。
 
 有时候，一些事情难以推进，原因就是成本太大，而成本太大的原因就是耗时，耗时面临着耗费人力、财力等，结合上述，也就是这些事的存在感十足。
 
 因此，有一种降低成本，叫提升这件事的效率。
+
+## 参与贡献
+
+![PRs Welcome][prs welcome badge]
+
+## 其它
+
+"@iyowei/fast-gitignore" 使用 [@iyowei/create-esm][create-esm] 脚手架生成。
+
+
+
+<!-- 链接 -->
+[github/gitignore]: https://github.com/github/gitignore
+
+[latest-gitignore]: https://github.com/iyowei/latest-gitignore
+
+[node version badge]: https://img.shields.io/badge/node.js-%3E%3D12.20.0-brightgreen?style=flat&logo=Node.js
+[download node.js]: https://nodejs.org/en/download/
+[esm]: https://img.shields.io/badge/ESM-brightgreen?style=flat
+[prs welcome badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat
+[create-esm]: https://github.com/iyowei/create-esm
+
+
+<!-- 更多文档细节，参考 https://github.com/iyowei/readme-templates -->
