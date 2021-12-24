@@ -15,14 +15,14 @@
 - 返回: {Object} 键是模板文件路径，值是模板内容。
 
 ```javascript
-import { log } from "console";
-import path from "path";
+import { log } from 'console';
+import path from 'path';
 
-import { fastGitignoreSync } from "@iyowei/fast-gitignore";
+import { fastGitignoreSync } from '@iyowei/fast-gitignore';
 
 const rslt = fastGitignoreSync({
-  topic: ["Windows", "SVN"],
-  templatesDir: path.join(process.cwd(), "templates"),
+  topic: ['Windows', 'SVN'],
+  templatesDir: path.join(process.cwd(), 'templates'),
 });
 
 log(rslt);
@@ -41,15 +41,15 @@ log(rslt);
 - 返回: {`Promise<object>`} 键是模板文件路径，值是模板内容。
 
 ```javascript
-import { log } from "console";
-import path from "path";
+import { log } from 'console';
+import path from 'path';
 
-import { fastGitignore } from "@iyowei/fast-gitignore";
+import { fastGitignore } from '@iyowei/fast-gitignore';
 
 (async () => {
   const rslt = await fastGitignore({
-    topic: ["Windows", "SVN"],
-    templatesDir: path.join(process.cwd(), "templates"),
+    topic: ['Windows', 'SVN'],
+    templatesDir: path.join(process.cwd(), 'templates'),
   });
 
   log(rslt);
@@ -63,6 +63,7 @@ import { fastGitignore } from "@iyowei/fast-gitignore";
 ```
 
 > @iyowei/fast-gitignore 并不会创建 ".gitignore" 文件，相关需求参见 [相关](#相关)。
+
 ## 安装
 
 [![Node Version Badge][node version badge]][download node.js] ![esm][esm]
@@ -98,18 +99,14 @@ $ yarn add @iyowei/fast-gitignore
 
 "@iyowei/fast-gitignore" 使用 [@iyowei/create-esm][create-esm] 脚手架生成。
 
-
-
 <!-- 链接 -->
+
 [github/gitignore]: https://github.com/github/gitignore
-
 [latest-gitignore]: https://github.com/iyowei/latest-gitignore
-
 [node version badge]: https://img.shields.io/badge/node.js-%3E%3D12.20.0-brightgreen?style=flat&logo=Node.js
 [download node.js]: https://nodejs.org/en/download/
 [esm]: https://img.shields.io/badge/ESM-brightgreen?style=flat
 [prs welcome badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat
 [create-esm]: https://github.com/iyowei/create-esm
-
 
 <!-- 更多文档细节，参考 https://github.com/iyowei/readme-templates -->

@@ -1,10 +1,10 @@
-import { readFileSync, readFile } from "fs";
-import { join } from "path";
-import { cpus } from "os";
+import { readFileSync, readFile } from 'fs';
+import { join } from 'path';
+import { cpus } from 'os';
 
-import fg from "fast-glob";
-import pMap from "p-map";
-import arrify from "arrify";
+import fg from 'fast-glob';
+import pMap from 'p-map';
+import arrify from 'arrify';
 
 /**
  * await fastGitignore({topic, templatesDir});
@@ -12,7 +12,7 @@ import arrify from "arrify";
  * @param {Array} topic - .gitignore 主题集合
  * @param {Array} templatesDir - 模板库磁盘位置
  */
-export async function fastGitignore({ topic = [], templatesDir = "." }) {
+export async function fastGitignore({ topic = [], templatesDir = '.' }) {
   const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = await fg([join(templatesDir, `${GLOB}.gitignore`)]);
@@ -21,7 +21,7 @@ export async function fastGitignore({ topic = [], templatesDir = "." }) {
     TPL_PATHS,
     (filePath) =>
       new Promise((resolve, reject) => {
-        readFile(filePath, "utf-8", (err, data) => {
+        readFile(filePath, 'utf-8', (err, data) => {
           if (err) {
             reject(err);
             return;
@@ -30,7 +30,7 @@ export async function fastGitignore({ topic = [], templatesDir = "." }) {
           resolve({ [filePath]: data });
         });
       }),
-    { concurrency: cpus().length }
+    { concurrency: cpus().length },
   );
 
   const PAYLOAD = gotGitignore.reduce((acc, cur) => {
@@ -49,13 +49,13 @@ export async function fastGitignore({ topic = [], templatesDir = "." }) {
  * @param {Array} topic - .gitignore 主题集合
  * @param {Array} templatesDir - 模板库磁盘位置
  */
-export function fastGitignoreSync({ topic = [], templatesDir = "." }) {
+export function fastGitignoreSync({ topic = [], templatesDir = '.' }) {
   const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = fg.sync([join(templatesDir, `${GLOB}.gitignore`)]);
 
   const PAYLOAD = TPL_PATHS.reduce((acc, cur) => {
-    acc[cur] = readFileSync(cur, "utf8");
+    acc[cur] = readFileSync(cur, 'utf8');
     return acc;
   }, {});
 
