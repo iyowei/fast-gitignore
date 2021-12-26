@@ -8,10 +8,11 @@
 
 ## 使用
 
-### `fastGitignoreSync({topic, templatesDir});`
+### `fastGitignoreSync({topic, templatesDir, custom});`
 
-- `topic` {Array} .gitignore 主题集合，**默认：** `[]`；
-- `templatesDir` {String} 模板库磁盘位置，**默认：** `.`；
+- `templatesDir` { String } 模板库磁盘位置，**必供**；
+- `topic` { String | Array } .gitignore 主题集合，**默认：** `[]`；
+- `custom` { String | Array } 自定义规则，**默认** `undefined`，**选填**；
 - 返回: {Object} 键是模板文件路径，值是模板内容。
 
 ```javascript
@@ -34,11 +35,12 @@ log(rslt);
   }*/
 ```
 
-### `await fastGitignore({topic, templatesDir});`
+### `await fastGitignore({topic, templatesDir, custom});`
 
-- `topic` {Array} .gitignore 主题集合，**默认：** `[]`；
-- `templatesDir` {String} 模板库磁盘位置，**默认：** `.`；
-- 返回: {`Promise<object>`} 键是模板文件路径，值是模板内容。
+- `templatesDir` { String } 模板库磁盘位置，**必供**；
+- `topic` { String | Array } .gitignore 主题集合，**默认：** `[]`；
+- `custom` { String | Array } 自定义规则，**默认** `undefined`，**选填**；
+- 返回: { `Promise<object>` } 键是模板文件路径，值是模板内容。
 
 ```javascript
 import { log } from 'console';

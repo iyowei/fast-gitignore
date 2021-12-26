@@ -7,12 +7,17 @@ import pMap from 'p-map';
 import arrify from 'arrify';
 
 /**
- * await fastGitignore({topic, templatesDir});
+ * await fastGitignore({topic, templatesDir, custom});
  *
- * @param {Array} topic - .gitignore 主题集合
+ * @param {String | Array} topic - .gitignore 主题集合
  * @param {Array} templatesDir - 模板库磁盘位置
+ * @param {String | Array} custom - 自定义规则
  */
-export async function fastGitignore({ topic = [], templatesDir = '.' }) {
+export async function fastGitignore({
+  topic = [],
+  templatesDir = '.',
+  custom = undefined,
+}) {
   const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = await fg([join(templatesDir, `${GLOB}.gitignore`)]);
@@ -38,18 +43,33 @@ export async function fastGitignore({ topic = [], templatesDir = '.' }) {
     return acc;
   }, {});
 
+  if (custom) {
+    Object.assign(
+      PAYLOAD,
+      arrify(custom).reduce((acc, cur, idx) => {
+        acc[`custom-${idx}`] = cur;
+        return acc;
+      }, {}),
+    );
+  }
+
   // 缓存文件路径：意义不大，本来就是本地的
   // 缓存文件内容：
   return PAYLOAD;
 }
 
 /**
- * fastGitignoreSync({topic, templatesDir});
+ * fastGitignoreSync({topic, templatesDir, custom});
  *
- * @param {Array} topic - .gitignore 主题集合
+ * @param {String | Array} topic - .gitignore 主题集合
  * @param {Array} templatesDir - 模板库磁盘位置
+ * @param {String | Array} custom - 自定义规则，选填
  */
-export function fastGitignoreSync({ topic = [], templatesDir = '.' }) {
+export function fastGitignoreSync({
+  topic = [],
+  templatesDir = '.',
+  custom = undefined,
+}) {
   const GLOB = `+(${arrify(topic).join('|')})`;
 
   const TPL_PATHS = fg.sync([join(templatesDir, `${GLOB}.gitignore`)]);
@@ -58,6 +78,16 @@ export function fastGitignoreSync({ topic = [], templatesDir = '.' }) {
     acc[cur] = readFileSync(cur, 'utf8');
     return acc;
   }, {});
+
+  if (custom) {
+    Object.assign(
+      PAYLOAD,
+      arrify(custom).reduce((acc, cur, idx) => {
+        acc[`custom-${idx}`] = cur;
+        return acc;
+      }, {}),
+    );
+  }
 
   return PAYLOAD;
 }

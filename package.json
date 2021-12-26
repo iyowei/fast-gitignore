@@ -13,7 +13,7 @@
   "scripts": {
     "test": "npx mocha '**/*.+(spec|test).js'",
     "format": "npx prettier '**/*.{js,mjs,json,md}' --write --loglevel error",
-    "lint": "npx eslint **/*.js"
+    "lint": "npx eslint '**/*.js'"
   },
   "dependencies": {
     "arrify": "^3.0.0",
